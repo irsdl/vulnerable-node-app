@@ -49,7 +49,8 @@ userRoutes.route('/lookup').post(function(req, res) {
 		User.find(query)
 		    .then(users => {
 		        console.log("Data Retrieved: " + users);
-		        res.json({users});
+            res.render('userlookup', { title: 'User Lookup', users: users });
+		        //res.json({users});
 		    })
 		    .catch(err => {
 		        console.log(err);
