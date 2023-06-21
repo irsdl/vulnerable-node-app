@@ -2,6 +2,20 @@
 
 This should now work with the latest version of NodeJS at this time (version 6) and should also include more examples. I have used the app directly and therefore did not use a docker to change its settings. Therefore, you may need to apply necessary changes if you want to use the docker with the new changes.
 
+Here is how I used it locally in Ubuntu:
+```
+cd ./app
+npm cache verify
+npm install
+sudo npm install -g nodemon
+````
+
+Then it is possible to start it using:
+```
+npm start
+```
+
+
 # vulnerable-nodejs-app
 
 A purposely vulnerable NodeJS and MongoDB application
