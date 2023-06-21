@@ -21,7 +21,7 @@ let User = new Schema({
 		type: String
 	}
 }, {
-	collection: 'user'
+	collection: 'users'
 });
 
 module.exports = mongoose.model('User', User);

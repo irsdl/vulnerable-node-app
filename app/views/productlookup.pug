@@ -1,0 +1,25 @@
+extends layout.pug
+  
+block content
+  h1= "Product Lookup"
+
+  p= "Lookup a product category here. To get you started, a valid category is `soft` or `fizzy`. You can NoSQL Inject to find other products."
+  form(method="get", class="form-inline")
+    .form-group(class="mb-2")
+      label(for="lookup", class="sr-only") Category Search
+      input(type="text", name="category")
+    button(type="submit", id="product_submit", class="btn btn-primary") Search
+
+  table(class="table")
+    thead
+      tr
+        th(scope="col") ID
+        th(scope="col") Name
+        th(scope="col") Category
+    tbody
+      - if (products !== undefined) 
+        - for (var i=0; i < products.length; i++)
+          tr
+            td #{products[i]._id}
+            td #{products[i].name}
+            td #{products[i].category}

@@ -8,6 +8,7 @@ const express = require('express'),
 
 const userRoute = require('./routes/user.route');
 const defaultRoute = require('./routes/default.route');
+const productRoute = require('./routes/product.route');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, { useNewUrlParser: true}).then(
@@ -32,8 +33,9 @@ var corsOptions = {
   }
 }
 
-app.use(cors(corsOptions));
+//app.use(cors(corsOptions));
 app.use('/user', userRoute);
+app.use('/product', productRoute);
 app.use('/', defaultRoute);
 
 let port = process.env.PORT || 4000;
