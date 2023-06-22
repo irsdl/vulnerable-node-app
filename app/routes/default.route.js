@@ -53,7 +53,7 @@ defaultRoutes.route('/reset').get(function(req, res) {
                 },
 
                 {
-                    username: "ghost",
+                    username: "carlos",
                     password: "abc123",
                     first_name: "Scary",
                     last_name: "Ghost",
