@@ -243,4 +243,39 @@ userRoutes.route('/login2').post(function(req, res) {
 	    });
 });
 
+
+/* similar to /login2 but this uses the whole request body but also make sure it contains username and password */
+userRoutes.route('/login3').post(function(req, res) {
+	let query = req.body;
+
+  if (typeof query !== 'undefined' && Object.keys(query).length > 0 && typeof query.username !== 'undefined'&& typeof query.password !== 'undefined') {
+	console.log("request " + JSON.stringify(query));
+	console.log("Mongo query: " + JSON.stringify(query));
+	User.find(query)
+	    .then(user => {
+	        console.log(user);
+	        if (user.length === 1) {
+              if(!user[0].locked){
+                var msg = "Logged in as user " + user[0].username + " with role " + user[0].role;
+  	            res.json({role: user[0].role, username: user[0].username, msg: msg });
+              }else{
+  	            res.json({role: "invalid", msg: "User is locked: " + user[0].username });
+              }   
+	            
+	        } else if (user.length > 1) {
+              res.json({role: "invalid", msg: "More than 1 user was selected!"});   
+          } else {
+	            res.json({role: "invalid", msg: "Invalid username or password."});
+	        }
+	    })
+	    .catch(err => {
+	        console.log(err);
+	        res.json(err);
+	    });
+  }
+	else {
+		res.json({});
+	}	
+});
+
 module.exports = userRoutes;

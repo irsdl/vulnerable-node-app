@@ -31,28 +31,36 @@ defaultRoutes.route('/reset').get(function(req, res) {
         .then(result => {
             console.log(result); // Logs the result of the delete operation
             let users = [{
-                    username: "admin",
-                    password: "2TR6uTRAuMUr5vARs9fYgdqY",
-                    first_name: "",
-                    last_name: "",
-                    role: "admin",
-                    email: "admin@nullsweep.com"
-                },
-                {
                     username: "guest",
                     password: "password",
                     first_name: "",
                     last_name: "",
                     role: "guest",
-                    email: "guest@nullsweep.com"
+                    email: "guest@nullsweep.com",
+                    locked: false,
+                    resetPasswordToken: ""
                 },
+
+                {
+                    username: "admin",
+                    password: "2TR6uTRAuMUr5vARs9fYgdqY",
+                    first_name: "",
+                    last_name: "",
+                    role: "admin",
+                    email: "admin@nullsweep.com",
+                    locked: false,
+                    resetPasswordToken: "swrtwaqqq225q222122112"
+                },
+
                 {
                     username: "ghost",
                     password: "abc123",
                     first_name: "Scary",
                     last_name: "Ghost",
                     role: "user",
-                    email: "ghost@mailinator.com"
+                    email: "ghost@mailinator.com",
+                    locked: true,
+                    resetPasswordToken: "iioldsgiaioaiejiejirj0ifgsi"
                 },
                 {
                     username: "jsmith",
@@ -60,7 +68,9 @@ defaultRoutes.route('/reset').get(function(req, res) {
                     first_name: "John",
                     last_name: "Smoth",
                     role: "user",
-                    email: "jsmith@gmail.com"
+                    email: "jsmith@gmail.com",
+                    locked: false,
+                    resetPasswordToken: ""
                 },
                 {
                     username: "angryPrism58736",
@@ -68,7 +78,9 @@ defaultRoutes.route('/reset').get(function(req, res) {
                     first_name: "Gary",
                     last_name: "Jorgen",
                     role: "user",
-                    email: "prismman@yahoo.com"
+                    email: "prismman@yahoo.com",
+                    locked: false,
+                    resetPasswordToken: "kmkkqjneufouigfjaiuef"
                 }
             ];
             console.log(users[0]);

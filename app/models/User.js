@@ -19,6 +19,12 @@ let User = new Schema({
 	},
 	password: {
 		type: String
+	},
+	locked: {
+		type: Boolean
+	}, 
+ 	resetPasswordToken: {
+		type: String
 	}
 }, {
 	collection: 'users'
