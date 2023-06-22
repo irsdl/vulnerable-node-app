@@ -214,4 +214,33 @@ userRoutes.route('/login').post(function(req, res) {
 	    });
 });
 
+/* Similar to /login but only allow 1 user to be selected! */
+userRoutes.route('/login2').post(function(req, res) {
+	let uname = req.body.username;
+	let pass = req.body.password;
+	console.log("Login request " + JSON.stringify(req.body));
+	let query = { 
+		username: uname,
+		password: pass 
+	}
+
+	console.log("Mongo query: " + JSON.stringify(query));
+	User.find(query)
+	    .then(user => {
+	        console.log(user);
+	        if (user.length === 1) {
+	            var msg = "Logged in as user " + user[0].username + " with role " + user[0].role;
+	            res.json({role: user[0].role, username: user[0].username, msg: msg });
+	        } else if (user.length > 1) {
+              res.json({role: "invalid", msg: "More than 1 user was selected!"});   
+          } else {
+	            res.json({role: "invalid", msg: "Invalid username or password."});
+	        }
+	    })
+	    .catch(err => {
+	        console.log(err);
+	        res.json(err);
+	    });
+});
+
 module.exports = userRoutes;
