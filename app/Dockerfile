@@ -1,27 +1,33 @@
-FROM	node:10.16.0-jessie
+# Use an official Node.js runtime as a parent image
+FROM node:20
 
+# Set up proxy arguments (if needed)
 ARG http_proxy
 ARG https_proxy
 ARG HTTP_PROXY
 ARG HTTPS_PROXY
 
-WORKDIR /usr/src/wait
-
-RUN 	wget https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh
-RUN 	chmod u+x wait-for-it.sh
-
+# Set the working directory in the container
 WORKDIR /usr/src/app
 
-COPY 	package*.json ./
+# Copy package.json and package-lock.json (if available)
+COPY package*.json ./
 
-RUN 	npm cache verify
+# Install the application dependencies, including devDependencies
+RUN npm install
 
-RUN 	npm install
-RUN 	npm install -g nodemon
+# Ensure nodemon is installed globally
+RUN npm install -g nodemon
 
-COPY 	. .
+# Copy the wait-for-it.sh script
+COPY lib/wait-for-it.sh /usr/src/wait/wait-for-it.sh
+RUN chmod u+x /usr/src/wait/wait-for-it.sh
 
+# Copy the rest of your application code into the container
+COPY . .
 
+# Expose the port your app runs on
 EXPOSE 4000
 
-CMD [ "npm", "start" ]
+# Define the command to run your app
+CMD ["/usr/src/wait/wait-for-it.sh", "mongo:27017", "--", "npm", "start"]

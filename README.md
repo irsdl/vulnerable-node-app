@@ -1,29 +1,16 @@
-# Changes from the original app
-
-This should now work with the latest version of NodeJS at this time (version 6) and should also include more examples. I have used the app directly and therefore did not use a docker to change its settings. Therefore, you may need to apply necessary changes if you want to use the docker with the new changes.
-
-Here is how I used it locally in Ubuntu:
-```
-cd ./app
-npm cache verify
-npm install
-sudo npm install -g nodemon
-````
-
-Then it is possible to start it using:
-```
-npm start
-```
-
-
 # vulnerable-nodejs-app
 
 A purposely vulnerable NodeJS and MongoDB application
 
-Multiple ways to do NoSQL Injection on Mongo. More to be added.
+Multiple ways to do NoSQL Injection on Mongo.
+
+## Changes from the original app
+
+This should now work with NodeJS version 20 and should also include more examples.
+
+Here is how I used it locally in Ubuntu:
 
 ## Starting the app
-
 
 ### Using Docker
 Docker is the simplest way to get the app running. Just run the following
@@ -35,18 +22,33 @@ docker-compose up
 
 navigate to http://localhost:4000
 
-### Running manually
-
-You'll need to install and run a local Mongo instance. On Ubuntu, it's as simple as apt install mongodb. Once running, you may have to specify the db path, or update the config.
-
+### Installing nodejs v20:
+If you want to run it locally, nodejs v20 is required.
 ```bash
-$ sudo mongod --dbpath /var/lib/mongodb
+# Remove the Conflicting Package
+sudo apt-get remove --purge libnode-dev
+# Add NodeSource Repository
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+# Install Node.js
+sudo apt-get install -y nodejs
+# Verify Installation
+node -v
+npm -v
 ```
 
-Add environment variables MONGO_PORT and MONGO_HOST if not running on localhost and default port. Once mongo is running successfully, start nodemon
-
+### Running the app locally:
+After installing nodejs v20, here is how it can be cloned & run:
 ```bash
-cd app; nodemon server
+git clone https://github.com/irsdl/vulnerable-node-app.git
+cd vulnerable-node-app/app
+npm cache verify
+npm install
+sudo npm install -g nodemon
+````
+
+Then it is possible to start it using:
+```
+npm start
 ```
 
 Navigate to http://localhost:4000
@@ -55,6 +57,7 @@ Navigate to http://localhost:4000
 Click on the populate / reset data link on the homepage to load in some users.
 
 ## Good learning links
+https://portswigger.net/web-security/nosql-injection
 https://blog.websecurify.com/2014/08/hacking-nodejs-and-mongodb.html
 https://scotch.io/@401/mongodb-injection-in-nodejs
 https://isc.sans.edu/forums/diary/Attacking+NoSQL+applications/21787/
