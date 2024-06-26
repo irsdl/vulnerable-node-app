@@ -73,6 +73,7 @@ Click on the populate/reset data link on the homepage to load some users. You ca
 ## Good Learning Links
 
 - [PortSwigger - NoSQL Injection](https://portswigger.net/web-security/nosql-injection)
+- [MongoDB NoSQL Injection with Aggregation Pipelines] (https://soroush.me/blog/2024/06/mongodb-nosql-injection-with-aggregation-pipelines/)
 - [Websecurify Blog - Hacking NodeJS and MongoDB](https://blog.websecurify.com/2014/08/hacking-nodejs-and-mongodb.html)
 - [Scotch.io - MongoDB Injection in NodeJS](https://scotch.io/@401/mongodb-injection-in-nodejs)
 - [SANS Internet Storm Center - Attacking NoSQL Applications](https://isc.sans.edu/forums/diary/Attacking+NoSQL+applications/21787/)
