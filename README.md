@@ -6,24 +6,28 @@ Multiple ways to do NoSQL Injection on Mongo.
 
 ## Changes from the original app
 
-This should now work with NodeJS version 20 and should also include more examples.
-
-Here is how I used it locally in Ubuntu:
+This fork works with NodeJS version 20 (and higher?) and includes more examples.
 
 ## Starting the app
 
-### Using Docker
+### Using Docker (Recommended)
 Docker is the simplest way to get the app running. Just run the following
 
 ```bash
+git clone https://github.com/irsdl/vulnerable-node-app.git
+cd vulnerable-node-app
+
 docker-compose build
 docker-compose up
 ```
 
-navigate to http://localhost:4000
+The app is accessible via http://[ip]:4000
 
-### Installing nodejs v20:
-If you want to run it locally, nodejs v20 is required.
+If you like to code your own samples or change existing samples to perhaps print some variables, you can change the JS files in the `/app` directory and they will be applied automatically. The paths and logic you are mostly after are in the `/app/routes/` directory.
+
+### Running Locally Without Docker
+Install ubuntu server in a VM, then install nodejs version 20 like this:
+
 ```bash
 # Remove the Conflicting Package
 sudo apt-get remove --purge libnode-dev
@@ -36,25 +40,27 @@ node -v
 npm -v
 ```
 
-### Running the app locally:
-After installing nodejs v20, here is how it can be cloned & run:
+After installing nodejs version 20 (or higher?), here is how you can start the app:
+
 ```bash
 git clone https://github.com/irsdl/vulnerable-node-app.git
 cd vulnerable-node-app/app
+
 npm cache verify
 npm install
 sudo npm install -g nodemon
 ````
 
 Then it is possible to start it using:
-```
+```bash
 npm start
 ```
 
-Navigate to http://localhost:4000
+The app is accessible via http://[ip]:4000
 
-### Load data
-Click on the populate / reset data link on the homepage to load in some users.
+## Load / Reset Data
+Click on the populate / reset data link on the homepage to load in some users. The following link does this:
+http://[ip]:4000/reset
 
 ## Good learning links
 https://portswigger.net/web-security/nosql-injection
